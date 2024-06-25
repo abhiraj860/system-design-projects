@@ -9,6 +9,22 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+type User struct {
+	ID    string `json:"id"`
+	Name  string `json:"name"`
+	Email string `json:"email"`
+	Password string `json:"password"`
+}
+
+func getUsers(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Get all users")
+}
+
+func getUser(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Get a user");
+}
+
+
 func main() {
 
 	clientOptions := options.Client().ApplyURI("mongodb+srv://abhiaditya860:ZHXUrjX1q1Rg18RV@cluster0.xnayn8w.mongodb.net/");
