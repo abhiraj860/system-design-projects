@@ -24,6 +24,17 @@ func getUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Get a user");
 }
 
+func createUser(w http.ResponseWriter, r * http.Request) {
+	fmt.Fprintf(w, "Create a user");
+}
+
+func updateUser(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Update a user");
+}
+
+func deleteUser(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Delete a user");
+}
 
 func main() {
 
@@ -43,8 +54,11 @@ func main() {
 	fmt.Println("Connected to MongoDB!");
 	defer client.Disconnect(context.Background());
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, there this is go!")
-	})
+	http.HandleFunc("/users", getUsers);
+	http.HandleFunc("/users/", getUser);
+	http.HandleFunc("/users/create", createUser);
+	http.HandleFunc("/users/update", updateUser);
+	http.HandleFunc("/users/delete", deleteUser);
+
 	http.ListenAndServe("localhost:8080", nil)
 }
