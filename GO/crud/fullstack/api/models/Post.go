@@ -27,3 +27,50 @@ func (p * Post) Prepare() {
 	p.UpdatedAt = time.Now();
 }
 
+func (p * Post) Validate() error {
+	if p.Title == "" {
+		return errors.New("required title");
+	}
+	if p.Content == "" {
+		return errors.New("required content");
+	}
+	if p.AuthorID < 1 {
+		return errors.New("required author");
+	}
+	return nil
+}
+
+func (p * Post) SavePost(db *gorm.DB) (*Post, error) {
+	err := db.Debug().Model(&Post{}).Create(&p).Error;
+	if err != nil {
+		return &Post{}, err;
+	}
+	if p.ID != 0 {
+		err := db.Debug().Model(&User{}).Where("id = ?", p.AuthorID).Take(&p.Author).Error;
+		if err != nil {
+			return &Post{}, err
+		}
+	}
+	return p, nil
+}
+
+func (p * Post) FindAllPost(db *gorm.DB) (*[] Post, error) {
+	posts := []Post{};
+	err := db.Debug().Model(&Post{}).Limit(100).Find(&posts).Error;
+	if err != nil {
+		return &[]Post{}, err;
+	}
+	if len(posts) > 0 {
+		for i := range posts {
+			err := db.Debug().Model(&User{}).Where("id = ?", posts[i].AuthorID).Take(&posts[i].Author).Error;
+			if err != nil {
+				return &[]Post{}, err
+			}
+		}
+	}
+	return &posts, nil;
+}
+
+func (p * Post) FindPostByID() {
+	
+}
