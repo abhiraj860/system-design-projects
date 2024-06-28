@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": "../Contribute"
 		},
 		{
-			"path": "../Contribute"
+			"path": "."
 		}
 	],
 	"settings": {}
