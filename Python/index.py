@@ -20,3 +20,8 @@ def processItems(items: list[str]):
         print(item)
 
 print(processItems(["banana", "mango"]))
+
+def process_items(items_t: tuple[int, int, str]):
+    return items_t
+
+print(process_items((1, 2, "Abhiraj")))
