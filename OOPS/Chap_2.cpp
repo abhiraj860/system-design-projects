@@ -13,6 +13,7 @@ public:
 // A constructor is a special type of method that is invoked everytime an object is created. 
 // A constructor does not have a return type.
 // The name of the constructor is same as that of a class.
+// A constructor should be always public so that it can be invoked while creating an object.
     YouTubeChannel (string name, string ownerName) {
         Name = name;
         OwnerName = ownerName;
