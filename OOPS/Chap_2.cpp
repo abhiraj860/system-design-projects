@@ -19,6 +19,7 @@ public:
         SubscribersCount = 0;
     }
 // Class methods define the behaviour of a class.
+// Creata a GetInfo method
     void GetInfo() {
         cout << "name: " << Name << endl;
         cout << "ownername: " << OwnerName << endl;
