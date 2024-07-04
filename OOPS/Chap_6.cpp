@@ -21,6 +21,7 @@ public:
     virtual void MakeCash() = 0; // Pure virtual function declaration. 
     // By defintition this class becomes an Abstract class as an Abstract class in C++ is class that 
     // has atleast one Pure virutal function (here MakeCash).
+// Note we cannot create instances of Abstract Classes instead we can create pointers of Abstract Classes.
 };
 
 // Derived Class
