@@ -23,6 +23,9 @@ export class RedisManager {
     }
 
     public sendAndAwait(message: MessageToEngine) {
+        // Note that arrow functions should be used below and not the 
+        // traditional functions as the traditional functions can 
+        // cause problems due to bindings.
         return new Promise<MessageFromOrderbook>((resolve) => {
             const id = this.getRandomClientId();
             this.client.subscribe(id, (message) => {
