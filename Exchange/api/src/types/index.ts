@@ -4,7 +4,7 @@ export const CANCEL_ORDER = "CANCEL_ORDER"; // cancel order type
 export const ON_RAMP = "ON_RAMP"; // money on_ramp type
 export const GET_OPEN_ORDERS = "GET_OPEN_ORDERS"; // get open orders type
 
-// Note: for every order placed there is an orderId genereated for that particular order.
+// Note: for every order placed there is an orderId generated for that particular order.
 
 export const GET_DEPTH = "GET_DEPTH"; // get_depth type
 
