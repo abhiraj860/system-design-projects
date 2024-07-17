@@ -24,13 +24,17 @@ export class RedisManager { // declare class redisManager
     }
     // send and await function with input as message to the engine
     public sendAndAwait(message: MessageToEngine) {
+        // returns a promise object (of type Message from orderbook) that contains the Message from the order book after processing
         return new Promise<MessageFromOrderbook>((resolve) => {
-            const id = this.getRandomClientId();
-            this.client.subscribe(id, (message) => {
-                this.client.unsubscribe(id);
-                resolve(JSON.parse(message));
+            const id = this.getRandomClientId(); // create a random client id and subscribe to the pubsub on that id channel to know about the trades
+            // subscribe to the pubsub to get the status of the order placed by the trader
+            this.client.subscribe(id, (message) => { // subscribe to the redis channel
+            // on receiving a message on the channel from the engine 
+                this.client.unsubscribe(id);  // unsubscribe from the particular (id) channel
+                resolve(JSON.parse(message)); // resolve the parsed string message received on the id channel from the engine into JSON
             });
-            this.publisher.lPush("messages", JSON.stringify({ clientId: id, message }));
+            // push the data into the redis queue of the name "messages" from the api to be processed by engine
+            this.publisher.lPush("messages", JSON.stringify({ clientId: id, message })); // push the message along with the data into the redis queue
         });
     }
     // create a random client id
