@@ -1,16 +1,16 @@
-import { Router } from "express";
-import { RedisManager } from "../RedisManager";
-import { CREATE_ORDER, CANCEL_ORDER, ON_RAMP, GET_OPEN_ORDERS } from "../types";
+import { Router } from "express"; // import router class
+import { RedisManager } from "../RedisManager"; // import redis manager
+import { CREATE_ORDER, CANCEL_ORDER, ON_RAMP, GET_OPEN_ORDERS } from "../types"; // import types
 
-export const orderRouter = Router();
+export const orderRouter = Router(); // create orderRouter object
 
-orderRouter.post("/", async (req, res) => {
-    const { market, price, quantity, side, userId } = req.body;
-    console.log({ market, price, quantity, side, userId })
+orderRouter.post("/", async (req, res) => { // post route
+    const { market, price, quantity, side, userId } = req.body; // destructure the body
+    console.log({ market, price, quantity, side, userId }) // print the request body
     //TODO: can u make the type of the response object right? Right now it is a union.
-    const response = await RedisManager.getInstance().sendAndAwait({
-        type: CREATE_ORDER,
-        data: {
+    const response = await RedisManager.getInstance().sendAndAwait({ // send the order to the redis manager
+        type: CREATE_ORDER, // type of order sent to redis manager
+        data: { // body data sent to the redis manager
             market,
             price,
             quantity,
