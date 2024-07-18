@@ -1,23 +1,23 @@
-version: '3.8'
+version: '3.8' # version name
 
-services:
-  timescaledb:
-    image: timescale/timescaledb:latest-pg12
-    container_name: timescaledb
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_DB: my_database
-      POSTGRES_USER: your_user
-      POSTGRES_PASSWORD: your_password
-    volumes:
-      - timescale-data:/var/lib/postgresql/data
+services: # services for docker
+  timescaledb: # timescale db services
+    image: timescale/timescaledb:latest-pg12 # image name of timescale db
+    container_name: timescaledb # container name of timescale db
+    ports: # port mapping
+      - "5432:5432" # port mapping for time scale db
+    environment: # environment variable for timescale db
+      POSTGRES_DB: my_database # name of the postgres user database
+      POSTGRES_USER: your_user # name of the user 
+      POSTGRES_PASSWORD: your_password # password for the postgres database
+    volumes: # add volumes for persistent connection of database
+      - timescale-data:/var/lib/postgresql/data # store the data persistently
 
-  redis:
-    image: redis:latest
-    container_name: redis
-    ports:
-      - "6379:6379"
+  redis: # name of the redis services
+    image: redis:latest # image name of the redis services
+    container_name: redis # name of the container running the services
+    ports: # define port on which redis runs
+      - "6379:6379" # port for redis
 
-volumes:
-  timescale-data:
+volumes: # specify the volumes
+  timescale-data: # specifies the volume to create for persistent data storage
