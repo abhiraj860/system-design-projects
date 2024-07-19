@@ -14,8 +14,8 @@ interface UserBalance {
     }
 }
 
-export class Engine {
-    private orderbooks: Orderbook[] = [];
+export class Engine { // create an engine class
+    private orderbooks: Orderbook[] = []; // create an orderbook array of the type orderbook
     private balances: Map<string, UserBalance> = new Map();
 
     constructor() {
@@ -48,11 +48,11 @@ export class Engine {
         }
         fs.writeFileSync("./snapshot.json", JSON.stringify(snapshotSnapshot));
     }
-
-    process({ message, clientId }: {message: MessageFromApi, clientId: string}) {
-        switch (message.type) {
-            case CREATE_ORDER:
-                try {
+    // to process the messages coming from the redis queue
+    process({ message, clientId }: {message: MessageFromApi, clientId: string}) { // in the function take in the message and clientId
+        switch (message.type) { // get to the message type
+            case CREATE_ORDER: // if the message type is create order
+                try { // try to create the order
                     const { executedQty, fills, orderId } = this.createOrder(message.data.market, message.data.price, message.data.quantity, message.data.side, message.data.userId);
                     RedisManager.getInstance().sendToApi(clientId, {
                         type: "ORDER_PLACED",
@@ -176,6 +176,7 @@ export class Engine {
         this.orderbooks.push(orderbook);
     }
 
+    // this function is used to create order which takes in the market, price, quantity, side and userId
     createOrder(market: string, price: string, quantity: string, side: "buy" | "sell", userId: string) {
 
         const orderbook = this.orderbooks.find(o => o.ticker() === market)
