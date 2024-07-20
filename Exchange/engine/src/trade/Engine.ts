@@ -318,9 +318,9 @@ export class Engine { // create an engine class
         }
     }
     // update the balance
-    updateBalance(userId: string, baseAsset: string, quoteAsset: string, side: "buy" | "sell", fills: Fill[], executedQty: number) {
-        if (side === "buy") {
-            fills.forEach(fill => {
+    updateBalance(userId: string, baseAsset: string, quoteAsset: string, side: "buy" | "sell", fills: Fill[], executedQty: number) { // input for update balance
+        if (side === "buy") { // if the side is buy
+            fills.forEach(fill => { // for each fills
                 // Update quote asset balance
                 //@ts-ignore
                 this.balances.get(fill.otherUserId)[quoteAsset].available = this.balances.get(fill.otherUserId)?.[quoteAsset].available + (fill.qty * fill.price);
