@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "tsc -b && node dist/index.js"
+  },
   "dependencies": {
     "typescript": "^5.5.3"
   }
