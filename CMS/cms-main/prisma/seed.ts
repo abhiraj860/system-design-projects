@@ -1,4 +1,5 @@
 import db from '../src/db';
+import bcrypt from 'bcrypt';
 
 async function seedUsers() {
   try {
@@ -11,6 +12,7 @@ async function seedUsers() {
         email: 'testuser@example.com',
         name: 'Test User 1',
         disableDrm: false,
+        password: await bcrypt.hash("123456", 3)
       },
       update: {},
     });
@@ -24,6 +26,7 @@ async function seedUsers() {
         email: 'testuser2@example.com',
         name: 'Test User 2',
         disableDrm: false,
+        password: await bcrypt.hash("123456", 3)
       },
       update: {},
     });

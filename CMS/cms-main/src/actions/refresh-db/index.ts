@@ -58,7 +58,7 @@ export const refreshDb: RefreshDbFn = async () => {
 
       const data = await checkUserEmailForPurchase(email, courseId);
 
-      if (data.data === '1') {
+      if (data && data.data === '1') {
         responses.push(course);
       }
     });

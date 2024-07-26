@@ -111,7 +111,7 @@ export async function getPurchases(email: string): Promise<Course[]> {
     .map(async (course) => {
       const courseId = course.appxCourseId.toString();
       const data = await checkUserEmailForPurchase(email, courseId);
-      if (data.data === '1') {
+      if (data && data.data === '1') {
         responses.push(course);
       }
     });

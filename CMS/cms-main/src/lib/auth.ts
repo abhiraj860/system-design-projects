@@ -138,6 +138,8 @@ export const authOptions = {
               name: true,
             },
           });
+          console.log(userDb?.password); 
+          if (userDb?.password) console.log((await bcrypt.compare(credentials.password, userDb.password)));
           if (
             userDb &&
             userDb.password &&
