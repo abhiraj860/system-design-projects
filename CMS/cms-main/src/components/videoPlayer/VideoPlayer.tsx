@@ -7,13 +7,6 @@ import Player from 'video.js/dist/types/player';
 import 'video.js/dist/video-js.css';
 import { useSearchParams } from 'next/navigation';
 import { YoutubeRenderer } from '../YoutubeRenderer';
-// import 'videojs-mobile-ui/dist/videojs-mobile-ui.css';
-// import 'videojs-mobile-ui';
-
-// mpdUrl => https://cloudfront.enet/video/video.mp4
-// thumbnail => https://cloudfront.enet/video/thumbnail.jpg
-// subtitles => https://cloudfront.enet/video/subtitles.vtt
-//
 export const VideoPlayer = ({
   options,
   subtitles,
