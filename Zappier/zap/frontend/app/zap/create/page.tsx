@@ -13,29 +13,30 @@ import { useEffect, useState } from "react";
 function useAvailableActionsAndTriggers() {
     const [availableActions, setAvailableActions] = useState([]);
     const [availableTriggers, setAvailableTriggers] = useState([]);
+    // const [login, setLogin] = useState(false);
 
     useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/trigger/available`)
-            .then(x => setAvailableTriggers(x.data.availableTriggers))
+            axios.get(`${BACKEND_URL}/api/v1/trigger/available`)
+                .then(x => setAvailableTriggers(x.data.availableTriggers))
 
-        axios.get(`${BACKEND_URL}/api/v1/action/available`)
-            .then(x => setAvailableActions(x.data.availableActions))
+            axios.get(`${BACKEND_URL}/api/v1/action/available`)
+                .then(x => setAvailableActions(x.data.availableActions))
     }, [])
 
     return {
         availableActions,
-        availableTriggers
+        availableTriggers,
+        // login
     }
 }
 
-export default function() {
+export default function Create() {
     const router = useRouter();
-    const { availableActions, availableTriggers } = useAvailableActionsAndTriggers();
+    const { availableActions, availableTriggers  } = useAvailableActionsAndTriggers();
     const [selectedTrigger, setSelectedTrigger] = useState<{
         id: string;
         name: string;
     }>();
-
     const [selectedActions, setSelectedActions] = useState<{
         index: number;
         availableActionId: string;
@@ -43,7 +44,6 @@ export default function() {
         metadata: any;
     }[]>([]);
     const [selectedModalIndex, setSelectedModalIndex] = useState<null | number>(null);
-
     return <div>
         <Appbar />
         <div className="flex justify-end bg-slate-200 p-4">
@@ -76,7 +76,7 @@ export default function() {
                 }} name={selectedTrigger?.name ? selectedTrigger.name : "Trigger"} index={1} />
             </div>
             <div className="w-full pt-2 pb-2">
-                {selectedActions.map((action, index) => <div className="pt-2 flex justify-center"> <ZapCell onClick={() => {
+                {selectedActions.map((action, index) => <div key={index} className="pt-2 flex justify-center"> <ZapCell onClick={() => {
                     setSelectedModalIndex(action.index);
                 }} name={action.availableActionName ? action.availableActionName : "Action"} index={action.index} /> </div>)}
             </div>
@@ -162,7 +162,7 @@ function Modal({ index, onSelect, availableItems }: { index: number, onSelect: (
                     }} />}
 
                     {step === 0 && <div>{availableItems.map(({id, name, image}) => {
-                            return <div onClick={() => {
+                            return <div key={id} onClick={() => {
                                 if (isTrigger) {
                                     onSelect({
                                         id,
