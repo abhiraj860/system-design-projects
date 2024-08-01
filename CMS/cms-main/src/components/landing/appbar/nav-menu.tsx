@@ -13,7 +13,6 @@ import {
 import { MenuIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-// import { JoinDiscord } from '@/components/JoinDiscord';
 import { AppbarAuth } from '@/components/AppbarAuth';
 
 export function NavigationMenu() {
