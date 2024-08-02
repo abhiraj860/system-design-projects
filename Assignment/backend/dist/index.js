@@ -36,25 +36,27 @@ class WebSocketHandler {
 class ProtocolFactory {
     static createHandler(protocol, connection) {
         switch (protocol) {
-            case 'websocket':
+            case "websocket":
                 return new WebSocketHandler(connection);
-            // Future protocols can be added here
+            // Future protocols 
             default:
                 throw new Error(`Unsupported protocol: ${protocol}`);
         }
     }
 }
 const wss = new ws_1.WebSocketServer({ port: config_1.PORT });
-wss.on('connection', (ws) => {
-    const handler = ProtocolFactory.createHandler('websocket', ws);
-    ws.on('error', console.error);
-    ws.on('message', (data) => {
+wss.on("connection", (ws) => {
+    const handler = ProtocolFactory.createHandler("websocket", ws);
+    ws.on("error", console.error);
+    ws.on("message", (data) => {
         data = data.toString();
-        wss.clients.forEach((client) => {
-            if (client.readyState === ws_1.default.OPEN) {
-                handler.handleMessage(data, client);
-            }
-        });
+        if (data.length > 0) {
+            wss.clients.forEach((client) => {
+                if (client.readyState === ws_1.default.OPEN) {
+                    handler.handleMessage(data, client);
+                }
+            });
+        }
     });
 });
-console.log("Listening on PORT", config_1.PORT);
+console.log("Listening on Port", config_1.PORT);
