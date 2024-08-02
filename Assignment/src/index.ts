@@ -1,4 +1,5 @@
 import WebSocket, { WebSocketServer } from 'ws';
+import { PORT } from './config';
 
 interface ProtocolHandler {
   handleMessage(data: WebSocket.Data, client: WebSocket): void;
@@ -27,8 +28,7 @@ class ProtocolFactory {
     }
   }
 }
-
-const wss = new WebSocketServer({ port: 8080 });
+const wss = new WebSocketServer({ port: PORT });
 
 wss.on('connection', (ws: WebSocket) => {
   const handler = ProtocolFactory.createHandler('websocket', ws);
@@ -44,3 +44,4 @@ wss.on('connection', (ws: WebSocket) => {
     });
   });
 });
+console.log("Listening on PORT", PORT);

@@ -24,6 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const ws_1 = __importStar(require("ws"));
+const config_1 = require("./config");
 class WebSocketHandler {
     constructor(ws) {
         this.ws = ws;
@@ -43,7 +44,7 @@ class ProtocolFactory {
         }
     }
 }
-const wss = new ws_1.WebSocketServer({ port: 8080 });
+const wss = new ws_1.WebSocketServer({ port: config_1.PORT });
 wss.on('connection', (ws) => {
     const handler = ProtocolFactory.createHandler('websocket', ws);
     ws.on('error', console.error);
@@ -56,3 +57,4 @@ wss.on('connection', (ws) => {
         });
     });
 });
+console.log("Listening on PORT", config_1.PORT);

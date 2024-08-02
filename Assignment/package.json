@@ -2,7 +2,7 @@
   "name": "assignment",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "scripts": {
     "start": "tsc -b && node dist/index.js"
   },
