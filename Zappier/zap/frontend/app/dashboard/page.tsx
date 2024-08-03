@@ -59,10 +59,10 @@ function useZaps() {
 export default function Zap() {
     const { loading, zaps, login } = useZaps();
     const router = useRouter();
-    if(!login) {
-        router.push('/login');    
-        return;
-    }
+    // if(!login) {
+    //     router.push('/login');    
+    //     return;
+    // }
     return <div>
         <Appbar />
         <div className="flex justify-center pt-8">
