@@ -1,1 +1,5 @@
-package projects
+package main
+
+func main() {
+	
+}
