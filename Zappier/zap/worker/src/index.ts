@@ -79,7 +79,6 @@ async function main() {
             await sendSol(address, amount);
           }
           
-          // 
           await new Promise(r => setTimeout(r, 500));
 
           const lastStage = (zapRunDetails?.zap.actions?.length || 1) - 1; // 1
