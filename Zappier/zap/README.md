@@ -5,3 +5,4 @@
 3. Solana reconcilliation side quest - If the users solana txn fails/takes a long time/is submitted to the blockchain, but your node goes down. What happens then? how can u prevent sending them money twice when the worker comes back up
 4. Use react-flow for the UI, make it prettier
  - If you are using react-flow, can you create parallel actions.
+5. Complete it
