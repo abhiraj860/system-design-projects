@@ -1,7 +1,7 @@
 {
   "name": "db",
   "version": "1.0.0",
-  "description": "",
+  "description": "Take the database into account",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
