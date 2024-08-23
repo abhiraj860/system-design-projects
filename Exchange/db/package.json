@@ -11,7 +11,7 @@
     "refresh:views": "npm run build && node dist/cron.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Abhiraj",
   "license": "ISC",
   "dependencies": {
     "@types/pg": "^8.11.6",
