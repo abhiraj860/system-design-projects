@@ -9,7 +9,7 @@
     "dev": "npm run build && npm run start"
   },
   "keywords": [],
-  "author": "",
+  "author": "Abhiraj",
   "license": "ISC",
   "dependencies": {
     "@types/cors": "^2.8.17",
