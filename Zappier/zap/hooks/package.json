@@ -1,13 +1,13 @@
 {
   "name": "hooks",
   "version": "1.0.0",
-  "description": "",
+  "description": "zappier",
   "main": "index.js",
   "scripts": {
     "dev": "tsc -b && node dist/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Abhiraj",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "5.16.2",
